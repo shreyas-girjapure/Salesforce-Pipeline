@@ -46,6 +46,13 @@ jobs:
         run: |
             echo "Coverting source to metadata format"
             sfdx force:source:convert -d deploy_code
+  
+    # Check validate package
+      - name: 'Deploy package'
+        id: deployPackage
+        if : success()
+        run: |
+          sfdx force:mdapi:deploy -d deploy_code -u SFDX-ENV -w 5 -l RunLocalTests
     # Running Local Tests
       - name: Runtests  
         if : success() 
@@ -55,11 +62,4 @@ jobs:
       - name: 'Upload code coverage for Apex to Codecov.io'
         uses: codecov/codecov-action@v2.0.2
         with:
-            flags: Apex    
-    # Check validate package
-      - name: 'Deploy package'
-        id: deployPackage
-        if : success()
-        run: |
-          sfdx force:mdapi:deploy -d deploy_code -u SFDX-ENV -w 5 -l RunLocalTests          
-
+            flags: Apex  
