@@ -47,13 +47,8 @@ jobs:
             echo "Coverting source to metadata format"
             sfdx force:source:convert -d deploy_code
     # Check validate package
-      - name: 'Validate package'
-        id: validatePackage
+      - name: 'Deploy package'
+        id: deployPackage
         if : success()
         run: |
-          sfdx force:mdapi:deploy -d deploy_code -u SFDX-ENV -w 5 -l RunLocalTests          
-      # Running Local Tests
-      - name: Runtests  
-        if : success() 
-        run : |
-           sfdx force:apex:test:run -l RunLocalTests -w 30
+          sfdx force:mdapi:deploy -d deploy_code -u SFDX-ENV -w 5 -l RunLocalTests
