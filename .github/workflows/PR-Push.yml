@@ -6,9 +6,9 @@ name: CI
 on:
   # Triggers the workflow on push or pull request events but only for the master branch
   push:
-    branches: [ master ]
+    branches: [master]
   pull_request:
-    branches: [ master ]
+    branches: [master]
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
@@ -16,21 +16,45 @@ on:
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   # This workflow contains a single job called "build"
-  build:
-    # The type of runner that the job will run on
+
+  
+  Create-Package : 
     runs-on: ubuntu-latest
-
-    # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
-
-      # Runs a single command using the runners shell
-      - name: Run a one-line script
-        run: echo Hello, world!
-
-      # Runs a set of commands using the runners shell
-      - name: Run a multi-line script
+      # Install Salesforce CLI
+      - name: 'Install Salesforce CLI'
         run: |
-          echo Add other actions to build,
-          echo test, and deploy your project.
+            wget https://developer.salesforce.com/media/salesforce-cli/sfdx/channels/stable/sfdx-linux-x64.tar.xz
+            mkdir ~/sfdx
+            tar xJf sfdx-linux-x64.tar.xz -C ~/sfdx --strip-components 1
+            echo "$HOME/sfdx/bin" >> $GITHUB_PATH
+            ~/sfdx/bin/sfdx version
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - name: 'Checkout source code'
+        uses: actions/checkout@v2
+      # Login To ORG      
+      - name: Login to org
+        id: loginToOrg
+        uses : sfdx-actions/setup-sfdx@v1
+        with:
+          sfdx-auth-url: ${{ secrets.AUTH_SECRET }}
+    # Convert Source to metadata
+      - name: 'Convert Source'
+        id: convertSource
+        if: success()
+        run: |
+            echo "Coverting source to metadata format"
+            sfdx force:source:convert -d deploy_code
+    # Check validate package
+      - name: 'Validate package'
+        id: validatePackage
+        if : success()
+        run: |
+          sfdx force:mdapi:deploy -d deploy_code -u SFDX-ENV -w 5 -l RunLocalTests
+          isValidated = 'true'
+      # Running Local Tests
+      - name: Runtests  
+        if : success() 
+        run : |
+           sfdx force:apex:test:run -l RunLocalTests -w 30
