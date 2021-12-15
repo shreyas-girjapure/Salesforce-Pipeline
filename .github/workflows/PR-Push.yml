@@ -51,8 +51,7 @@ jobs:
         id: validatePackage
         if : success()
         run: |
-          sfdx force:mdapi:deploy -d deploy_code -u SFDX-ENV -w 5 -l RunLocalTests
-          isValidated = 'true'
+          sfdx force:mdapi:deploy -d deploy_code -u SFDX-ENV -w 5 -l RunLocalTests          
       # Running Local Tests
       - name: Runtests  
         if : success() 
