@@ -23,7 +23,7 @@ yarn-error.log*
 
 # Dependency directories
 node_modules/
-
+tests
 # Eslint cache
 .eslintcache
 

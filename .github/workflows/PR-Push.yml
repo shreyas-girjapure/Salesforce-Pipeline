@@ -16,6 +16,7 @@ on:
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   # This workflow contains a single job called "build"
+
   
   Create-Package : 
     runs-on: ubuntu-latest
@@ -45,9 +46,20 @@ jobs:
         run: |
             echo "Coverting source to metadata format"
             sfdx force:source:convert -d deploy_code
+    # Running Local Tests
+      - name: Runtests  
+        if : success() 
+        run : |
+           sfdx force:apex:test:run -c -r human -d ./tests/apex -w 20       
+    # Upload code coverage data
+      - name: 'Upload code coverage for Apex to Codecov.io'
+        uses: codecov/codecov-action@v2.0.2
+        with:
+            flags: Apex    
     # Check validate package
       - name: 'Deploy package'
         id: deployPackage
         if : success()
         run: |
-          sfdx force:mdapi:deploy -d deploy_code -u SFDX-ENV -w 5 -l RunLocalTests
+          sfdx force:mdapi:deploy -d deploy_code -u SFDX-ENV -w 5 -l RunLocalTests          
+
