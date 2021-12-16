@@ -31,4 +31,11 @@ jobs:
           sfdx-auth-url: ${{ secrets.AUTH_SECRET }}
       # Retrives all soruce data from package.xml 
       - name: Retrive from org based on package.xml
-        run: sfdx force:source:retrieve --apiversion 52.0
+        run: |
+          echo Add other actions to build,
+          FILE=$GITHUB_WORKSPACE/manifest/feature-package.xml
+          if test -f "$FILE"; then
+              echo "$FILE exists."
+          fi
+          echo work space $FILE      
+        sfdx force:source:retrieve -p $FILE -u SFDX-ENV
