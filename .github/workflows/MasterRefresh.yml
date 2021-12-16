@@ -44,4 +44,4 @@ jobs:
         if: success()
         uses: EndBug/add-and-commit@v7
         with:
-          message: "Changed by admin"
+          message: "Changed by admin "
