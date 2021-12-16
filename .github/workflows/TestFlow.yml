@@ -33,6 +33,10 @@ jobs:
       - name: Run a multi-line script
         run: |
           echo Add other actions to build,
-          echo work space $GITHUB_WORKSPACE
+                    FILE=$GITHUB_WORKSPACE/manifest/feature-package.xml
+          if test -f "$FILE"; then
+              echo "$FILE exists."
+          fi
+          echo work space $GITHUB_WORKSPACE/force-app/main/default
             
          
