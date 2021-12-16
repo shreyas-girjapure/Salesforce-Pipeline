@@ -2,7 +2,7 @@ name: Master Refresh
 
 on:
   schedule:
-    - cron: "*/10 * * * *"
+    - cron: "*/6 * * * *"
     
 jobs:
 
@@ -29,4 +29,4 @@ jobs:
           sfdx-auth-url: ${{ secrets.AUTH_SECRET }}
       # Retrives all soruce data from package.xml 
       - name: Retrive from org based on package.xml
-        run: sfdx force:source:retrieve -x manifest\package.xml -u SFDX-ENV
+        run: sfdx force:source:retrieve -x manifest\package.xml -u SFDX-ENV -r
