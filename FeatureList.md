@@ -27,3 +27,4 @@
     3. Create a branching stategy
     4. Pre commit hooks and validations on local setup
     5. look into currently facing apex validation problems
+    6. Deploy code only if there is change in force-app\main\default
