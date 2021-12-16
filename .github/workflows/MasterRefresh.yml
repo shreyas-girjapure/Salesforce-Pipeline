@@ -14,7 +14,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      # Install Salesforce CLI
+      # Install Salesforce CLI 
       - name: 'Install Salesforce CLI'
         run: |
             wget https://developer.salesforce.com/media/salesforce-cli/sfdx/channels/stable/sfdx-linux-x64.tar.xz
