@@ -29,6 +29,9 @@ jobs:
       # Runs a single command using the runners shell
       - name: Run a one-line script
         run: echo Hello, world!
+      #Adding something to commit
+      - name: Adding Something for commit
+        run: date +%s > report.txt
       # Commit Changes Code
       - name: Commit changes
         uses: EndBug/add-and-commit@v7
