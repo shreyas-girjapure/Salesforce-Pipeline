@@ -253,10 +253,6 @@
             </layoutItem>
         </relatedContentItems>
     </relatedContent>
-<<<<<<< HEAD
-
-=======
->>>>>>> c92528a30bd7f742d426816e1029160008dd2dea
     <relatedLists>
         <fields>TASK.SUBJECT</fields>
         <fields>TASK.WHO_NAME</fields>
