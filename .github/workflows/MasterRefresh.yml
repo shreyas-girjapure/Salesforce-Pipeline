@@ -14,7 +14,7 @@ jobs:
     steps:
       - name: Checkout repo
         uses: actions/checkout@v2
-        
+
       # Install Salesforce CLI 
       - name: 'Install Salesforce CLI'
         run: |
@@ -31,4 +31,4 @@ jobs:
           sfdx-auth-url: ${{ secrets.AUTH_SECRET }}
       # Retrives all soruce data from package.xml 
       - name: Retrive from org based on package.xml
-        run: sfdx force:source:retrieve -p force-app\main\default -u SFDX-ENV
+        run: sfdx force:source:retrieve -p 'force-app\main\default' -u SFDX-ENV
