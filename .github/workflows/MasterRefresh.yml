@@ -2,7 +2,7 @@ name: Master Refresh
 
 on:
   schedule:
-    - cron: "*/5 * * * *"
+    - cron: "*/6 * * * *"
 jobs:
 
   refresh-branch-code:
