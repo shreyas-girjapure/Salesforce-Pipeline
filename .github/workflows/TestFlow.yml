@@ -33,6 +33,6 @@ jobs:
       - name: Run a multi-line script
         run: |
           echo Add other actions to build,
-          for item in  ${{github.*}}; do echo $item;  done
+          echo work space $GITHUB_WORKSPACE
             
          
