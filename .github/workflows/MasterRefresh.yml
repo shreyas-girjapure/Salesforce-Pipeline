@@ -15,3 +15,7 @@ jobs:
       # Runs a single command using the runners shell
       - name: Run a one-line script
         run: echo Hello, world!
+
+      # Retrives all soruce data from package.xml 
+      - name: Retrive from org based on package.xml
+        run: sfdx force:source:retrieve -x manifest\package.xml
