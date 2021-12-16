@@ -39,6 +39,9 @@ jobs:
       # Lint LWC
       - name: "Lint Lightning Web Components"
         run: npm run lint
+      # Ignore NPM Packages
+      - name: Ignore npm package
+        run: 
       # Commit Changes Code
       - name: Commit changes
         uses: EndBug/add-and-commit@v7
