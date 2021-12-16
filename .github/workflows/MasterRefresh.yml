@@ -36,8 +36,12 @@ jobs:
           fi
           echo work space $FILE      
           sfdx force:source:retrieve -x $FILE -u SFDX-ENV
+      # Remove Cli File
+      - name: Remove CLI File
+        run: rm -rf sfdx-linux-x64.tar.xz
       # Commit Changes Code
       - name: Commit changes
+        if: success()
         uses: EndBug/add-and-commit@v7
         with:
           message: "Changed by admin"
