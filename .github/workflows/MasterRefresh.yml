@@ -2,7 +2,8 @@ name: Master Refresh
 
 on:
   schedule:
-    - cron: "*/6 * * * *"
+    - cron: "*/10 * * * *"
+workflow_dispatch:    
 jobs:
 
   refresh-branch-code:
