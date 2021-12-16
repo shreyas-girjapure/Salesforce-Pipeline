@@ -36,7 +36,7 @@ jobs:
       - name: Commit changes
         uses: EndBug/add-and-commit@v7
         with: 
-          message: 'Test commit action test'
+          message: 'Formatted Code'
           
             
          
