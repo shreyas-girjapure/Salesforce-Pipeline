@@ -21,7 +21,12 @@ jobs:
             tar xJf sfdx-linux-x64.tar.xz -C ~/sfdx --strip-components 1
             echo "$HOME/sfdx/bin" >> $GITHUB_PATH
             ~/sfdx/bin/sfdx version
-
+      # Login To ORG      
+      - name: Login to org
+        id: loginToOrg
+        uses : sfdx-actions/setup-sfdx@v1
+        with:
+          sfdx-auth-url: ${{ secrets.AUTH_SECRET }}
       # Retrives all soruce data from package.xml 
       - name: Retrive from org based on package.xml
-        run: sfdx force:source:retrieve -x manifest\package.xml
+        run: sfdx force:source:retrieve -x manifest\package.xml -u SFDX-ENV
