@@ -38,56 +38,57 @@ jobs:
         run: npm run prettier
       # Lint LWC
       - name: "Lint Lightning Web Components"
-        run: npm run lint 
+        run: npm run lint
       # Commit Changes Code
       - name: Commit changes
         uses: EndBug/add-and-commit@v7
-        with: 
-          message: 'Formatted Code'
+        with:
+          message: "Formatted Code"
+          branch: master
 
-  Create-Package : 
+  Create-Package:
     runs-on: ubuntu-latest
-    needs: Formatting-and-Verifications    
+    needs: Formatting-and-Verifications
     steps:
       - uses: actions/checkout@v2
       # Install Salesforce CLI
-      - name: 'Install Salesforce CLI'
+      - name: "Install Salesforce CLI"
         run: |
-            wget https://developer.salesforce.com/media/salesforce-cli/sfdx/channels/stable/sfdx-linux-x64.tar.xz
-            mkdir ~/sfdx
-            tar xJf sfdx-linux-x64.tar.xz -C ~/sfdx --strip-components 1
-            echo "$HOME/sfdx/bin" >> $GITHUB_PATH
-            ~/sfdx/bin/sfdx version
+          wget https://developer.salesforce.com/media/salesforce-cli/sfdx/channels/stable/sfdx-linux-x64.tar.xz
+          mkdir ~/sfdx
+          tar xJf sfdx-linux-x64.tar.xz -C ~/sfdx --strip-components 1
+          echo "$HOME/sfdx/bin" >> $GITHUB_PATH
+          ~/sfdx/bin/sfdx version
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-      - name: 'Checkout source code'
+      - name: "Checkout source code"
         uses: actions/checkout@v2
-      # Login To ORG      
+      # Login To ORG
       - name: Login to org
         id: loginToOrg
-        uses : sfdx-actions/setup-sfdx@v1
+        uses: sfdx-actions/setup-sfdx@v1
         with:
           sfdx-auth-url: ${{ secrets.AUTH_SECRET }}
-    # Convert Source to metadata
-      - name: 'Convert Source'
+      # Convert Source to metadata
+      - name: "Convert Source"
         id: convertSource
         if: success()
         run: |
-            echo "Coverting source to metadata format"
-            sfdx force:source:convert -d deploy_code
-  
-    # Check validate package
-      - name: 'Deploy package'
+          echo "Coverting source to metadata format"
+          sfdx force:source:convert -d deploy_code
+
+      # Check validate package
+      - name: "Deploy package"
         id: deployPackage
-        if : success()
+        if: success()
         run: |
           sfdx force:mdapi:deploy -d deploy_code -u SFDX-ENV -w 5 -l RunLocalTests
-    # Running Local Tests
-      - name: Runtests  
-        if : success() 
-        run : |
-           sfdx force:apex:test:run -c -r human -d ./tests/apex -w 20       
-    # Upload code coverage data
-      - name: 'Upload code coverage for Apex to Codecov.io'
+      # Running Local Tests
+      - name: Runtests
+        if: success()
+        run: |
+          sfdx force:apex:test:run -c -r human -d ./tests/apex -w 20
+      # Upload code coverage data
+      - name: "Upload code coverage for Apex to Codecov.io"
         uses: codecov/codecov-action@v2.0.2
         with:
-            flags: Apex
+          flags: Apex
