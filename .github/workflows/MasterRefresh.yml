@@ -34,7 +34,7 @@ jobs:
       - name: Retrive from org based on package.xml
         run: |
           echo Add other actions to build,
-          FILE=$GITHUB_WORKSPACE/manifest/feature-package.xml
+          FILE=$GITHUB_WORKSPACE/force-app/main/default
           if test -f "$FILE"; then
               echo "$FILE exists."
           fi
