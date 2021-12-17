@@ -28,11 +28,11 @@ jobs:
           tar xJf sfdx-linux-x64.tar.xz -C ~/sfdx --strip-components 1
           echo "$HOME/sfdx/bin" >> $GITHUB_PATH
           ~/sfdx/bin/sfdx version
-      #Install Salesforce Plugin
+      # Install Salesforce Plugin
       - name: Install delta plugin
         if: success()
         run: echo y | sfdx plugins:install sfdx-git-delta           
-      #Test diff 
+      # Generate Delta Folder 
       - name: Delta calculate
         if: success()
         run: |

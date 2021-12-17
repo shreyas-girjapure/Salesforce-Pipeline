@@ -67,15 +67,32 @@ jobs:
         uses: sfdx-actions/setup-sfdx@v1
         with:
           sfdx-auth-url: ${{ secrets.AUTH_SECRET }}
+      # Install Salesforce Plugin
+      - name: Install delta plugin
+        if: success()
+        run: echo y | sfdx plugins:install sfdx-git-delta           
+      # Generate Delta Folder 
+      - name: Delta calculate
+        if: success()
+        run: |
+          git log --oneline -n 3
+          FILE=$GITHUB_WORKSPACE/force-app/main/default
+          AFTER=${{github.event.after}}
+          BEFORE=${{github.event.before}}
+          echo here is after $AFTER here is before $BEFORE
+          git config remote.origin.fetch '+refs/heads/*:refs/remotes/origin/*'
+          git fetch --all
+          git --no-pager diff --name-status $BEFORE $AFTER
+          sfdx sgd:source:delta -s $FILE  --to $BEFORE --from $AFTER --output .
+          cat package/package.xml          
       # Convert Source to metadata
-      - name: "Convert Source"
+      - name: "Convert Source To metadata"
         id: convertSource
         if: success()
         run: |
           echo "Coverting source to metadata format"
           FILE=$GITHUB_WORKSPACE/package/package.xml
-          sfdx force:source:convert -d deploy_code
-
+          sfdx force:source:convert -d deploy_code -x $FILE
       # Check validate package
       - name: "Deploy package"
         id: deployPackage
