@@ -43,3 +43,5 @@ jobs:
           git config remote.origin.fetch '+refs/heads/*:refs/remotes/origin/*'
           git fetch --all
           git --no-pager diff --name-status $BEFORE $AFTER
+          sfdx sgd:source:delta --to $BEFORE --from $AFTER --output .
+          cat package/package.xml 
