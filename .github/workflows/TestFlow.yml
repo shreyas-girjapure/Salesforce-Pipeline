@@ -26,9 +26,4 @@ jobs:
         if: success()
         run: |
           git log --oneline -n 3
-          git config remote.origin.fetch '+refs/heads/*:refs/remotes/origin/*'
-          git fetch --all
-          git checkout -b pr
-          git --no-pager diff --name-status pr origin/master
-          sfdx sgd:source:delta --to pr --from origin/master --output .
-          cat package/package.xml
+          echo ${{toJSON(github)}}
