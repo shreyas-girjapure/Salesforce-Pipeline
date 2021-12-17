@@ -17,6 +17,8 @@ jobs:
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
+        with:
+          fetch-depth: 2
       # Cache node_modules to speed up the process
       - name: "Restore node_modules cache"
         id: cache-npm
@@ -50,6 +52,8 @@ jobs:
     needs: Formatting-and-Verifications
     steps:
       - uses: actions/checkout@v2
+        with:
+          fetch-depth: 2
       # Install Salesforce CLI
       - name: "Install Salesforce CLI"
         run: |
@@ -58,9 +62,7 @@ jobs:
           tar xJf sfdx-linux-x64.tar.xz -C ~/sfdx --strip-components 1
           echo "$HOME/sfdx/bin" >> $GITHUB_PATH
           ~/sfdx/bin/sfdx version
-      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-      - name: "Checkout source code"
-        uses: actions/checkout@v2
+
       # Login To ORG
       - name: Login to org
         id: loginToOrg
