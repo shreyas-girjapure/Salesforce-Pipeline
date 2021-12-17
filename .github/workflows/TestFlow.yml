@@ -26,4 +26,5 @@ jobs:
         if: success()
         run: |
           git log --oneline -n 3
-          echo ${{toJSON(github)}}
+          context=${{toJSON(github)}}
+          echo $context
