@@ -28,7 +28,6 @@
 
 #### Run Apex server 
 
-    This needs to be checked again but problem is that on local apex server never starts 
-
-    this is to format and validate apex code before deployment.
+    This needs to be checked again but problem is that on local apex server never 
+    starts this is to format and validate apex code before deployment.
 
