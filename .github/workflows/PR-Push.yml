@@ -74,7 +74,7 @@ jobs:
         run: |
           echo "Coverting source to metadata format"
           FILE=$GITHUB_WORKSPACE/package/package.xml
-          sfdx force:source:convert -d deploy_code -x 
+          sfdx force:source:convert -d deploy_code
 
       # Check validate package
       - name: "Deploy package"
