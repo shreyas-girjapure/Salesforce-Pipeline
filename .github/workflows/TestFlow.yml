@@ -37,5 +37,5 @@ jobs:
         if: success()
         run: |
           git log --oneline -n 3
-          ANOTHER=${{github.ref}}
-          echo $ANOTHER
+          ANOTHER=${{toJSON(github)}}
+          echo "$ANOTHER"
