@@ -37,5 +37,9 @@ jobs:
         if: success()
         run: |
           git log --oneline -n 3
-          ANOTHER=${{toJSON(github)}}
-          echo "$ANOTHER"
+          AFTER=${{github.event.after}}
+          BEFORE=${{github.event.before}}
+          echo here is after $AFTER here is before $BEFORE
+          git config remote.origin.fetch '+refs/heads/*:refs/remotes/origin/*'
+          git fetch --all
+          git --no-pager diff --name-status $BEFORE $AFTER
