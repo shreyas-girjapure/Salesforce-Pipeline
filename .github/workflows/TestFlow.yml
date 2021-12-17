@@ -17,7 +17,8 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
-
+        with:
+          fetch-depth: 2
       - name: Run a one-line script
         run: echo Hello, world!
             
@@ -26,5 +27,3 @@ jobs:
         if: success()
         run: |
           git log --oneline -n 3
-          context=${{toJSON(github)}}
-          echo $context
