@@ -15,7 +15,6 @@
     9. Run Unit tests
     10. Generate Report and post to codev.io
     11. Pull code from org with a CRON job [current interval every 10 minues needs to be changed to nightly basis]
- 
 
 ### Upcoming Features
 
