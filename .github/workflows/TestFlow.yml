@@ -21,28 +21,3 @@ jobs:
           fetch-depth: 2
       - name: Run a one-line script
         run: echo Hello, world!
-      - name: "Install Salesforce CLI"
-        run: |
-          wget https://developer.salesforce.com/media/salesforce-cli/sfdx/channels/stable/sfdx-linux-x64.tar.xz
-          mkdir ~/sfdx
-          tar xJf sfdx-linux-x64.tar.xz -C ~/sfdx --strip-components 1
-          echo "$HOME/sfdx/bin" >> $GITHUB_PATH
-          ~/sfdx/bin/sfdx version
-      # Install Salesforce Plugin
-      - name: Install delta plugin
-        if: success()
-        run: echo y | sfdx plugins:install sfdx-git-delta           
-      # Generate Delta Folder 
-      - name: Delta calculate
-        if: success()
-        run: |
-          git log --oneline -n 3
-          FILE=$GITHUB_WORKSPACE/force-app/main/default
-          AFTER=${{github.event.after}}
-          BEFORE=${{github.event.before}}
-          echo here is after $AFTER here is before $BEFORE
-          git config remote.origin.fetch '+refs/heads/*:refs/remotes/origin/*'
-          git fetch --all
-          git --no-pager diff --name-status $BEFORE $AFTER
-          sfdx sgd:source:delta -s $FILE  --to $BEFORE --from $AFTER --output .
-          cat package/package.xml

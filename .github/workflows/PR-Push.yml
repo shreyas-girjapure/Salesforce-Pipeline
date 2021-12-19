@@ -12,7 +12,6 @@ jobs:
   Formatting-and-Verifications:
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
-
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
@@ -102,7 +101,7 @@ jobs:
         run: |
           sfdx force:mdapi:deploy -d deploy_code -u SFDX-ENV -w 5 -l RunLocalTests
       # Running Local Tests
-      - name: Runtests
+      - name: Run tests
         if: success()
         run: |
           sfdx force:apex:test:run -c -r human -d ./tests/apex -w 20
