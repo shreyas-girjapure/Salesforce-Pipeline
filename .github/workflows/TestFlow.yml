@@ -52,4 +52,4 @@ jobs:
           echo prevOutputs===${{ toJSON(needs.check-for-metadata-change.env) }}
           echo prevEnv===${{ needs.check-for-metadata-change.env.hasChanges }}
           echo needsDataDump === ${{toJSON(needs)}}
-          echo workflowvar === $hasChanges
+          echo workflowvar === ${hasChanges}
