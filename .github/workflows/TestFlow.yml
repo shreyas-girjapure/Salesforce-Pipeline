@@ -12,6 +12,25 @@ on:
 env:
   hasChanges: 'false'
 jobs:
+  check-for-metadata-change:
+    runs-on: ubuntu-latest
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 2
+      # Check if has metadata change
+      - name: check if has metadata change
+        id: checkForMetadataChange
+        uses: ./.github/actions/check-metadata-change
+        with:
+          destination-branch: ${{github.event.after}}
+          source-branch: ${{github.event.before}}
+      - name: Set environment variables
+        run: |
+         tempVar=${{steps.checkForMetadataChange.outputs.has-metadata-change}}
+         echo "hasChanges=$tempVar" >> $GITHUB_ENV
+         echo $tempVar
   build:
     runs-on: ubuntu-latest
     steps:
@@ -21,18 +40,7 @@ jobs:
           fetch-depth: 2
       - name: Run a one-line script
         run: echo Hello, world!
-      - name: check if has metadata change
-        id: checkForMetadataChange
-        uses: ./.github/actions/check-metadata-change
-        with:
-          destination-branch: ${{github.event.after}}
-          source-branch: ${{github.event.before}}                
-      - name: Set environment variables 
-        run: |
-         tempVar=${{steps.checkForMetadataChange.outputs.has-metadata-change}}
-         echo "hasChanges=$tempVar" >> $GITHUB_ENV
-         echo $tempVar
-          
-      - name : Set up environ variables
+
+      - name : Print Env variable of different job
         run: |
           echo ${{ env.hasChanges }}
