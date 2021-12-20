@@ -26,4 +26,3 @@ jobs:
         with:
           destination-branch: ${{github.event.after}}
           source-branch: ${{github.event.before}}
-          
