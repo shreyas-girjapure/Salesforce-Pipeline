@@ -33,6 +33,7 @@ jobs:
          echo $tempVar
   build:
     runs-on: ubuntu-latest
+    needs: check-for-metadata-change
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
