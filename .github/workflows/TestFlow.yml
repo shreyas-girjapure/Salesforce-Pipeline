@@ -31,7 +31,8 @@ jobs:
       - name: print for metadata change
         run: echo ${{ env.TEST_VAR }}
         env:
-          TEST_VAR : ${{ steps.checkForMetadataChange.outputs.has-metadata-change }}
+          TEST_VAR1 : ${{ steps.checkForMetadataChange.outputs.has-metadata-change }}
       - name : test this shit
         run: |
           echo ${{ env.TEST_VAR }}
+          echo ${{ env.TEST_VAR1 }}
