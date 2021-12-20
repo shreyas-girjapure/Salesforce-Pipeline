@@ -22,7 +22,7 @@ jobs:
       - name: Run a one-line script
         run: echo Hello, world!
       - name: check if has metadata change
-        uses: .github\actions\Check Metadata Change\action.yml
+        uses: .github\actions\check-metadata-change\action.yml
         with:
           destination-branch: ${{github.event.after}}
           source-branch: ${{github.event.before}}
