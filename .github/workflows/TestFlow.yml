@@ -13,7 +13,8 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-
+    env:
+      TEST_VAR : 'falseTest'
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
@@ -29,4 +30,5 @@ jobs:
           source-branch: ${{github.event.before}}
       - name : print for metadata change
         run: |
-          echo ${{ toJSON(steps.checkForMetadataChange.outputs) }}
+          echo ${{ env.TEST_VAR }}
+
