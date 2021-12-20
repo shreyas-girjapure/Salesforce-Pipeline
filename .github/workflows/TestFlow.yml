@@ -36,10 +36,8 @@ jobs:
 
   build:
     runs-on: ubuntu-latest
-    env:
-      hasChanges: ${{ needs.check-for-metadata-change.outputs.hasChanges }}
     needs: check-for-metadata-change
-    if: ${{ env.hasChanges }}
+    if: ${{ needs.check-for-metadata-change.outputs.hasChanges }}
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
