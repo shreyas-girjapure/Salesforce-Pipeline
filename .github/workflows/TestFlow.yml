@@ -15,7 +15,7 @@ jobs:
   check-for-metadata-change:
     runs-on: ubuntu-latest
     outputs:
-      hasChanges: 'hello'
+      hasChanges: ${{steps.checkForMetadataChange.outputs.has-metadata-change}}
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
