@@ -14,7 +14,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     env:
-      TEST_VAR : ${{ null }}
+      TEST_VAR : 'hello'
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
@@ -34,7 +34,4 @@ jobs:
           echo ${{ steps.checkForMetadataChange.outputs.has-metadata-change}}
         env: 
           TEST_VAR : ${{ steps.checkForMetadataChange.outputs.has-metadata-change}}
-      - name : Check env variable
-        run: |
-          echo ${{ env.TEST_VAR }}
 
