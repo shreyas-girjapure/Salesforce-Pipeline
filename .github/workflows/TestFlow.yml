@@ -21,8 +21,12 @@ jobs:
           fetch-depth: 2
       - name: Run a one-line script
         run: echo Hello, world!
-      - name: check if has metadata change 
+      - name: check if has metadata change
+        id: checkForMetadataChange
         uses: ./.github/actions/check-metadata-change
         with:
           destination-branch: ${{github.event.after}}
           source-branch: ${{github.event.before}}
+      - name : print for metadata change
+        run: |
+          echo ${{toJSON(github)}}
