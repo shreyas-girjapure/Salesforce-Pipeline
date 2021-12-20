@@ -35,4 +35,4 @@ jobs:
           
       - name : test this shit
         run: |
-          echo "${{ env.hasChanges }}"
+          echo ${{ env.hasChanges }}
