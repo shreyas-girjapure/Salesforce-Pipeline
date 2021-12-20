@@ -28,7 +28,12 @@ jobs:
           destination-branch: ${{github.event.after}}
           source-branch: ${{github.event.before}}                
       - name: Set environment variables 
-        run: echo "hasChanges=${{steps.checkForMetadataChange.has-metadata-change}} >> $GITHUB_ENV"
+        run: |
+         echo "hasChanges=${{steps.checkForMetadataChange.has-metadata-change}} >> $GITHUB_ENV"
+         tempVar=${{steps.checkForMetadataChange.has-metadata-change}}
+         echo "${{steps.checkForMetadataChange.has-metadata-change}}"
+         echo $tempVar
+          
 
       - name : test this shit
         run: |
