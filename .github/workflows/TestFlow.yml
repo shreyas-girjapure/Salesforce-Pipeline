@@ -46,4 +46,4 @@ jobs:
       - name : Print Env variable of different job
         run: |
           echo ${{ env.hasChanges }}
-          echo ${{ needs.check-for-metadata-change.env}}
+          echo ${{ toJSON(needs.check-for-metadata-change.env) }}
