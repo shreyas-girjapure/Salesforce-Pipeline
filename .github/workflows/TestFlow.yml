@@ -49,3 +49,4 @@ jobs:
         run: |
           echo ${{ env.hasChanges }}
           echo ${{ toJSON(needs.check-for-metadata-change.env) }}
+          echo prevEnv===${{ needs.check-for-metadata-change.env.hasChanges }}
