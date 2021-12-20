@@ -28,10 +28,10 @@ jobs:
         with:
           destination-branch: ${{github.event.after}}
           source-branch: ${{github.event.before}}
+        env:
+          TEST_VAR : ${{ steps.checkForMetadataChange.outputs.has-metadata-change}}                  
       - name : print for metadata change
         run: |
           echo ${{ env.TEST_VAR }}
-          echo ${{ steps.checkForMetadataChange.outputs.has-metadata-change}}
-        env: 
-          TEST_VAR : ${{ steps.checkForMetadataChange.outputs.has-metadata-change}}
+
 
