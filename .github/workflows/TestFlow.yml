@@ -14,7 +14,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     env:
-      TEST_VAR : 'hello'
+      TEST_VAR : 'false'
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
@@ -27,11 +27,14 @@ jobs:
         uses: ./.github/actions/check-metadata-change
         with:
           destination-branch: ${{github.event.after}}
-          source-branch: ${{github.event.before}}
-        env:
-          TEST_VAR : ${{ steps.checkForMetadataChange.outputs.has-metadata-change}}                  
+          source-branch: ${{github.event.before}}                
       - name : print for metadata change
         run: |
           echo ${{ env.TEST_VAR }}
+        env:
+          TEST_VAR : ${{ env.TEST_VAR }}
+        - name : test this shit
+          run: |
+            echo ${{ env.TEST_VAR }}
 
 
