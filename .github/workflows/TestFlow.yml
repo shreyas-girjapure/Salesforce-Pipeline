@@ -39,7 +39,7 @@ jobs:
     env:
       hasChanges: ${{ needs.check-for-metadata-change.outputs.hasChanges }}
     needs: check-for-metadata-change
-    if: false
+    if: ${{ env.hasChanges }}
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
