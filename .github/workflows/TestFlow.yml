@@ -14,8 +14,6 @@ env:
 jobs:
   build:
     runs-on: ubuntu-latest
-    env:
-      TEST_VAR : 'hello'
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
