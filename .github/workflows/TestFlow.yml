@@ -35,8 +35,9 @@ jobs:
          echo tempVar====$tempVar
 
   build:
-
     runs-on: ubuntu-latest
+    env:
+      hasChanges: ${{ needs.check-for-metadata-change.outputs.hasChanges }}
     needs: check-for-metadata-change
     steps:
       - name: Checkout repository
@@ -48,6 +49,4 @@ jobs:
 
       - name : Print Env variable of different job
         run: |
-
-          echo prevOutputs===${{ needs.check-for-metadata-change.outputs.hasChanges }}
-          echo needsDataDump === ${{toJSON(job)}}
+          echo envVal===${{ env.hasChanges }}
