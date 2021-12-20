@@ -9,10 +9,12 @@ on:
     branches: [master]
 
   workflow_dispatch:
-env:
-  hasChanges: 'false'
+
 jobs:
+
   check-for-metadata-change:
+    env:
+      hasChanges: 'false'
     runs-on: ubuntu-latest
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
