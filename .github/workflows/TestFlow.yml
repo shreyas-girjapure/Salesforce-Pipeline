@@ -33,7 +33,7 @@ jobs:
          tempVar=${{steps.checkForMetadataChange.outputs.has-metadata-change}}
          echo "hasChanges=$tempVar" >> $GITHUB_ENV
          echo tempVar====$tempVar
-         echo env====${{env.hasChanges}}
+         echo env==== $hasChanges
   build:
     runs-on: ubuntu-latest
     needs: check-for-metadata-change
@@ -52,3 +52,4 @@ jobs:
           echo prevOutputs===${{ toJSON(needs.check-for-metadata-change.env) }}
           echo prevEnv===${{ needs.check-for-metadata-change.env.hasChanges }}
           echo needsDataDump === ${{toJSON(needs)}}
+          echo workflowvar === $hasChanges
