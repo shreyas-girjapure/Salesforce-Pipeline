@@ -9,11 +9,13 @@ on:
   workflow_dispatch:
 
 jobs:
-  Formatting-and-Verifications:
-    # The type of runner that the job will run on
+  check-for-metadata-change:
     runs-on: ubuntu-latest
-    # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 2
       # Check if has metadata change
       - name: check if has metadata change
         id: checkForMetadataChange
@@ -21,10 +23,25 @@ jobs:
         with:
           destination-branch: ${{github.event.after}}
           source-branch: ${{github.event.before}}
+      - name: 
+  Formatting-and-Verifications:
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+    needs: check-for-metadata-change
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
         with:
           fetch-depth: 2
+      # Check if has metadata change
+      - name: check if has metadata change
+        id: checkForMetadataChange
+        uses: ./.github/actions/check-metadata-change
+        with:
+          destination-branch: ${{github.event.after}}
+          source-branch: ${{github.event.before}}
+
       # Cache node_modules to speed up the process
       - name: "Restore node_modules cache"
         id: cache-npm
@@ -37,7 +54,7 @@ jobs:
             npm-
       # Install npm dependencies for Prettier and Jest
       - name: "Install npm dependencies"
-        if: steps.cache-npm.outputs.cache-hit != 'true'
+        if: steps.cache-npm.outputs.cache-hit != 'true' && 
         run: |
           echo "Installing npm dependencies",
           npm install
