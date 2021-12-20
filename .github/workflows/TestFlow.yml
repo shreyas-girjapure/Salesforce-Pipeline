@@ -33,6 +33,6 @@ jobs:
          echo "hasChanges=$tempVar" >> $GITHUB_ENV
          echo $tempVar
           
-      - name : test this shit
+      - name : Set up environ variables
         run: |
           echo ${{ env.hasChanges }}
