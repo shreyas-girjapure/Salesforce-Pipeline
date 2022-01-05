@@ -3,7 +3,7 @@ public with sharing class HelloWorld {
         //Comment added
         System.debug('Hello World space ');
     }
-    public static Integer additionMethod(Integer a, Integer b) {
+    public static Integer additionMethod(Integer a, Integer b){
         return a + b;
     }
 }
