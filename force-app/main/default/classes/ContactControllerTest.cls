@@ -1,7 +1,7 @@
 @isTest
 public with sharing class ContactControllerTest {
-@isTest
-public static void sayHiTest(){
-    ContactController.sayHi('TestName');
-}
+    @isTest
+    public static void sayHiTest() {
+        ContactController.sayHi('TestName');
+    }
 }
