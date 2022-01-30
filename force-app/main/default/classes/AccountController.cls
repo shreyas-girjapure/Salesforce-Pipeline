@@ -7,7 +7,7 @@ public with sharing class AccountController {
         List<Account> accountList = new List<Account>();
         try {
             if(Account.getSObjectType().getDescribe().isAccessible()){
-                accountList = [select id , firstName , lastName from Account where id IN :accountIds limit 10];
+                accountList = [select id , Name from Account where id IN :accountIds limit 10];
             }
         } catch (Exception e) {
             throw new AuraHandledException(e.getMessage());
