@@ -1,6 +1,6 @@
 public with sharing class AccountController {
     public AccountController() {
-    }
+    } 
     @AuraEnabled
     public static List<Account> getAllAccounts(List<String> accountIds) {
         List<Account> accountList = new List<Account>();
