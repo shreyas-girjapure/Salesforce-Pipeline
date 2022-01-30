@@ -12,5 +12,5 @@ public with sharing class AccountController {
         } catch (Exception e) {
             throw new AuraHandledException(e.getMessage());
         }
-    }
+    } 
 }

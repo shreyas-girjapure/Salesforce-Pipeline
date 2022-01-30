@@ -20,4 +20,4 @@ public with sharing class AccountControllerTest {
         AccountController.getAllAccounts(accountIds);
         
     }
-}
+} 
