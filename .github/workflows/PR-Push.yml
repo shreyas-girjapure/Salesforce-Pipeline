@@ -24,8 +24,8 @@ jobs:
         id: checkForMetadataChange
         uses: ./.github/actions/check-metadata-change
         with:
-          destination-branch: ${{github.event.after}}
-          source-branch: ${{github.event.before}}
+          destination-branch: ${{github.event.before}}
+          source-branch: ${{github.event.after}}
       - name: Set output variables
         run: |
          tempVar=${{steps.checkForMetadataChange.outputs.has-metadata-change}}
