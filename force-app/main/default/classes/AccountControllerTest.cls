@@ -1,7 +1,7 @@
 @isTest
 public with sharing class AccountControllerTest {
     @isTest
-    public static void getAllAccountsTest(){
+    public static void getAllAccountsTest() {
         List<Account> accList = new List<Account>();
         Account a1 = new Account();
         a1.Name = 'Test 1';
@@ -13,11 +13,10 @@ public with sharing class AccountControllerTest {
 
         List<String> accountIds = new List<String>();
 
-        for(Account acc : accList){
+        for (Account acc : accList) {
             accountIds.add(acc.Id);
         }
 
         AccountController.getAllAccounts(accountIds);
-        
     }
-} 
+}
