@@ -19,8 +19,4 @@ public with sharing class AccountControllerTest {
 
         AccountController.getAllAccounts(accountIds);
     }
-    @isTest
-    public static void getAllAccountsTestNegative(){
-        AccountController.getAllAccounts(null);
-    }
 }
