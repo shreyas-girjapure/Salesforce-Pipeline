@@ -113,7 +113,7 @@ jobs:
       - name: Install delta plugin
         if: success()
         run: echo y | sfdx plugins:install sfdx-git-delta           
-      # Generate Delta Folder 
+      # Generate Delta Folder [Here changed the order to fix bug for not detecting new ly added files]
       - name: Generate Delta Package
         if: success()
         run: |
