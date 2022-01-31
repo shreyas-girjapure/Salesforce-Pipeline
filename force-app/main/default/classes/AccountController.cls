@@ -9,7 +9,7 @@ public with sharing class AccountController {
                     FROM Account
                     WHERE id IN :accountIds
                     LIMIT 10
-                ];  
+                ];
             }
         } catch (Exception e) {
             throw new AuraHandledException(e.getMessage());
