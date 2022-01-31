@@ -125,7 +125,7 @@ jobs:
           git config remote.origin.fetch '+refs/heads/*:refs/remotes/origin/*'
           git fetch --all
           git --no-pager diff --name-status $BEFORE $AFTER
-          sfdx sgd:source:delta -s $FILE  --to $BEFORE --from $AFTER --output .
+          sfdx sgd:source:delta -s $FILE  --to $AFTER --from $BEFORE --output .
           cat package/package.xml          
       # Convert Source to metadata
       - name: "Convert Source To metadata"
