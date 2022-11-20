@@ -1,18 +1,29 @@
-# Salesforce DX Project: Next Steps
+### Feature Plans
 
-Now that you’ve created a Salesforce DX project, what’s next? Here are some documentation resources to get you started.
+    Currently all of the major features have been implemented below is the list of all of the features currently implementd
 
-## How Do You Plan to Deploy Your Changes?
+    More to come stay tuned ! :D
 
-Do you want to deploy a set of changes, or create a self-contained application? Choose a [development model](https://developer.salesforce.com/tools/vscode/en/user-guide/development-models).
+    1. Code Formatting
+    2. Run flow on PR and on Merge to master
+    3. Install node dependencies
+    4. Install CLI
+    5. Run flows only when needed
+    6. Commit to branch when action finishes and changes are detected
+    7. Create a package from source directory
+    8. Deploy the package
+    9. Run Unit tests
+    10. Generate Report and post to codev.io
+    11. Pull code from org with a CRON job [current interval every 10 minues needs to be changed to nightly basis]
 
-## Configure Your Salesforce DX Project
+### Upcoming Features
 
-The `sfdx-project.json` file contains useful configuration information for your project. See [Salesforce DX Project Configuration](https://developer.salesforce.com/docs/atlas.en-us.sfdx_dev.meta/sfdx_dev/sfdx_dev_ws_config.htm) in the _Salesforce DX Developer Guide_ for details about this file.
+    Below are the planned features
 
-## Read All About It
-
--   [Salesforce Extensions Documentation](https://developer.salesforce.com/tools/vscode/)
--   [Salesforce CLI Setup Guide](https://developer.salesforce.com/docs/atlas.en-us.sfdx_setup.meta/sfdx_setup/sfdx_setup_intro.htm)
--   [Salesforce DX Developer Guide](https://developer.salesforce.com/docs/atlas.en-us.sfdx_dev.meta/sfdx_dev/sfdx_dev_intro.htm)
--   [Salesforce CLI Command Reference](https://developer.salesforce.com/docs/atlas.en-us.sfdx_cli_reference.meta/sfdx_cli_reference/cli_reference.htm)
+    1. Delta Deploy
+        1. Deploy only files from the commit or from the package
+    2. Send mails/Notifications when deployment is success or is failed
+    3. Create a branching stategy
+    4. Pre commit hooks and validations on local setup
+    5. look into currently facing apex validation problems
+    6. Deploy code only if there is change in force-app\main\default
